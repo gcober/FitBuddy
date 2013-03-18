@@ -24,6 +24,8 @@
 @property (weak, nonatomic) IBOutlet UITextField *textDistance;
 @property (weak, nonatomic) IBOutlet UILabel *labelSpeedPace;
 @property (weak, nonatomic) IBOutlet UILabel *labelCalcualtedSpeedPace;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segctrlPaceSpeed;
+@property (weak, nonatomic) IBOutlet UISegmentedControl *segctrlMilesKilometers;
 
 
 @end

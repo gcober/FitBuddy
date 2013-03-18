@@ -48,7 +48,7 @@
     {
         self.labelCalcualtedSpeedPace.text = @"(enter distance)";
     }
-    // Otherwise enter show the pace
+    // Otherwise show the speed/pace
     else
     {
         double pace = [self calculatePaceFromTimeInSeconds:[self getTimeInSecondsFromLabels] andDistance:[self.textDistance.text doubleValue]];

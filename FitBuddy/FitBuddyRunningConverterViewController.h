@@ -16,6 +16,7 @@
 - (IBAction)actionHourEditingChanged:(id)sender;
 - (IBAction)actionMinEditingChanged:(id)sender;
 - (IBAction)actionSecEditingChanged:(id)sender;
+- (IBAction)actionConvertMileToKM:(id)sender;
 
 // Outlets
 @property (weak, nonatomic) IBOutlet UITextField *textTimeHours;

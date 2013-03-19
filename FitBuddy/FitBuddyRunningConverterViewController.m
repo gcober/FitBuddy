@@ -51,8 +51,17 @@
     // Otherwise show the speed/pace
     else
     {
-        double pace = [self calculatePaceFromTimeInSeconds:[self getTimeInSecondsFromLabels] andDistance:[self.textDistance.text doubleValue]];
-        self.labelCalcualtedSpeedPace.text = [NSString stringWithFormat:@"%@", [self timeStringFromMinutesAsDouble:pace]];
+        // If the user wants pace show pace
+        if(self.segctrlPaceSpeed.selectedSegmentIndex == 0)
+        {
+            double pace = [self calculatePaceFromTimeInSeconds:[self getTimeInSecondsFromLabels] andDistance:[self.textDistance.text doubleValue]];
+            self.labelCalcualtedSpeedPace.text = [NSString stringWithFormat:@"%@", [self timeStringFromMinutesAsDouble:pace]];
+        }
+        else{
+            double speed = [self.textDistance.text doubleValue] / ([self getTimeInSecondsFromLabels] / 3600);
+            self.labelCalcualtedSpeedPace.text = [NSString stringWithFormat:@"%5.2f %@", speed, self.segctrlMilesKilometers.selectedSegmentIndex==0?@"mph":@"kph"];
+                                                                            
+        }
     }
 }
 
@@ -87,6 +96,25 @@
         [self.textTimeSeconds resignFirstResponder];
         [self.textDistance becomeFirstResponder];
     }
+}
+
+- (IBAction)actionConvertMileToKM:(id)sender {
+    double newDisplayValue = 0.0;
+    if(self.segctrlMilesKilometers.selectedSegmentIndex == 0)//Convert to miles
+    {
+        double distanceInKilometers = [self.textDistance.text doubleValue];
+        newDisplayValue = distanceInKilometers * 0.621371;
+        
+    }
+    else//convert to km
+    {
+        double distanceInMiles = [self.textDistance.text doubleValue];
+        newDisplayValue = distanceInMiles / 0.621371;
+    }
+    self.textDistance.text = [NSString stringWithFormat:@"%6.2f", newDisplayValue ];
+    
+    // Recalculate the pace/speed
+    [self calculateButtonPushed:sender];
 }
 
 - (double)getTimeInSecondsFromLabels
